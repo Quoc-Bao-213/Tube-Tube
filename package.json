@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "6.33.3",
     "@hookform/resolvers": "^5.2.2",
+    "@neondatabase/serverless": "1.0.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -41,6 +42,9 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "dotenv": "17.2.3",
+    "drizzle-kit": "0.31.5",
+    "drizzle-orm": "0.44.6",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.545.0",
@@ -54,6 +58,7 @@
     "recharts": "2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
+    "tsx": "4.20.6",
     "vaul": "^1.1.2",
     "zod": "^4.1.12"
   },
