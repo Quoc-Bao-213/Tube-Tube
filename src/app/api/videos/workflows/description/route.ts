@@ -58,7 +58,7 @@ export const { POST } = serve(async (context) => {
   });
 
   if (!description) {
-    throw new Error("Title not generated");
+    throw new Error("Description not generated");
   }
 
   await context.run("update-video", async () => {
