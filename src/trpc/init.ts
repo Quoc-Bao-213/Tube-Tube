@@ -10,7 +10,7 @@ import superjson from "superjson";
 export const createTRPCContext = cache(async () => {
   const { userId } = await auth();
 
-  return { cleakUserId: userId };
+  return { clerkUserId: userId };
 });
 
 export type Context = Awaited<ReturnType<typeof createTRPCContext>>;
@@ -30,14 +30,14 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(
 ) {
   const { ctx } = opts;
 
-  if (!ctx.cleakUserId) {
+  if (!ctx.clerkUserId) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
   const [user] = await db
     .select()
     .from(users)
-    .where(eq(users.clerkId, ctx.cleakUserId))
+    .where(eq(users.clerkId, ctx.clerkUserId))
     .limit(1);
 
   if (!user) {
