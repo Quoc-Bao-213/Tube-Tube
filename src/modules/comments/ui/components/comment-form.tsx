@@ -42,15 +42,14 @@ export const CommentForm = ({ videoId, onSuccess }: CommentFormProps) => {
     },
   });
 
-  const form = useForm<z.infer<typeof commentInsertSchema>>({
-    resolver: zodResolver(commentInsertSchema.omit({ userId: true })),
-    defaultValues: {
-      videoId,
-      value: "",
-    },
+  const schema = commentInsertSchema.omit({ userId: true });
+
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: { videoId, value: "" },
   });
 
-  const handleSubmit = (values: z.infer<typeof commentInsertSchema>) => {
+  const handleSubmit = (values: z.infer<typeof schema>) => {
     create.mutate(values);
   };
 
@@ -75,7 +74,7 @@ export const CommentForm = ({ videoId, onSuccess }: CommentFormProps) => {
                   <Textarea
                     {...field}
                     placeholder="Add a comment..."
-                    className="resize-none bg-transparent overflow-hidden min-h-0"
+                    className="resize-none bg-transparent overflow-hidden min-h-0 h-15"
                   />
                 </FormControl>
                 <FormMessage />
