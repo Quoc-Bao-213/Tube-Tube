@@ -1,0 +1,54 @@
+import { users } from "./users";
+import { categories } from "./categories";
+import { videoViews } from "./videoViews";
+import { videoReactions } from "./videoReactions";
+import { comments } from "./comments";
+import { relations } from "drizzle-orm";
+import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { videoVisibility } from "./enums";
+import {
+  createInsertSchema,
+  createSelectSchema,
+  createUpdateSchema,
+} from "drizzle-zod";
+
+export const videos = pgTable("videos", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: text("title").notNull(),
+  description: text("description"),
+  muxStatus: text("mux_status"),
+  muxAssetId: text("mux_asset_id").unique(),
+  muxUploadId: text("mux_upload_id").unique(),
+  muxPlaybackId: text("mux_playback_id").unique(),
+  muxTrackId: text("mux_track_id").unique(),
+  muxTrackStatus: text("mux_track_status"),
+  thumbnailUrl: text("thumbnail_url"),
+  thumbnailKey: text("thumbnail_key"),
+  previewUrl: text("preview_url"),
+  previewKey: text("preview_key"),
+  duration: integer("duration").default(0).notNull(),
+  visibility: videoVisibility("visibility").default("private").notNull(),
+  userId: uuid("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
+  categoryId: uuid("category_id").references(() => categories.id, {
+    onDelete: "set null",
+  }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const videoSelectSchema = createSelectSchema(videos);
+export const videoInsertSchema = createInsertSchema(videos);
+export const videoUpdateSchema = createUpdateSchema(videos);
+
+export const videoRelations = relations(videos, ({ one, many }) => ({
+  user: one(users, { fields: [videos.userId], references: [users.id] }),
+  category: one(categories, {
+    fields: [videos.categoryId],
+    references: [categories.id],
+  }),
+  views: many(videoViews),
+  reactions: many(videoReactions),
+  comments: many(comments),
+}));
