@@ -23,7 +23,7 @@ export const videoReactionsRouter = createTRPCRouter({
         );
 
       if (existingVideoReactionLike) {
-        const [deletedVideoReaction] = await db
+        const [deletedViewerReaction] = await db
           .delete(videoReactions)
           .where(
             and(
@@ -33,7 +33,7 @@ export const videoReactionsRouter = createTRPCRouter({
           )
           .returning();
 
-        return deletedVideoReaction;
+        return deletedViewerReaction;
       }
 
       const [createdVideoReaction] = await db
@@ -65,7 +65,7 @@ export const videoReactionsRouter = createTRPCRouter({
         );
 
       if (existingVideoReactionDislike) {
-        const [deletedVideoReaction] = await db
+        const [deletedViewerReaction] = await db
           .delete(videoReactions)
           .where(
             and(
@@ -75,7 +75,7 @@ export const videoReactionsRouter = createTRPCRouter({
           )
           .returning();
 
-        return deletedVideoReaction;
+        return deletedViewerReaction;
       }
 
       const [createdVideoReaction] = await db
