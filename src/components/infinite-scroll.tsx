@@ -37,6 +37,7 @@ export const InfiniteScroll = ({
       <div className="h-1" ref={targetRef} />
       {hasNextPage ? (
         <Button
+          className="cursor-pointer"
           variant="secondary"
           disabled={!hasNextPage || isFetchingNextPage}
           onClick={() => fetchNextPage()}
@@ -44,7 +45,9 @@ export const InfiniteScroll = ({
           {isFetchingNextPage ? "Loading..." : "Load More"}
         </Button>
       ) : (
-        <p>You have reached the end of the list</p>
+        <p className="text-xs text-muted-foreground">
+          You have reached the end of the list
+        </p>
       )}
     </div>
   );
