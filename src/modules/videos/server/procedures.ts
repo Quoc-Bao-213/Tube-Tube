@@ -29,7 +29,7 @@ import { UTApi } from "uploadthing/server";
 import z from "zod";
 
 export const videosRouter = createTRPCRouter({
-  getManySubscribed: protectedProcedure
+  getManySubscriptions: protectedProcedure
     .input(
       z.object({
         cursor: z
