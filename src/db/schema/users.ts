@@ -1,8 +1,9 @@
 import { videos } from "./videos";
-import { videoViews } from "./videoViews";
-import { videoReactions } from "./videoReactions";
-import { subscriptions } from "./subscriptions";
 import { comments } from "./comments";
+import { playlists } from "./playlists";
+import { videoViews } from "./videoViews";
+import { subscriptions } from "./subscriptions";
+import { videoReactions } from "./videoReactions";
 import { commentReactions } from "./commentReactions";
 import { relations } from "drizzle-orm";
 import {
@@ -38,4 +39,5 @@ export const userRelations = relations(users, ({ many }) => ({
   }),
   comments: many(comments),
   commentReactions: many(commentReactions),
+  playlists: many(playlists),
 }));

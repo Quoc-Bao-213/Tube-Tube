@@ -1,8 +1,9 @@
 import { users } from "./users";
+import { comments } from "./comments";
 import { categories } from "./categories";
 import { videoViews } from "./videoViews";
 import { videoReactions } from "./videoReactions";
-import { comments } from "./comments";
+import { playlistVideos } from "./playlistVideos";
 import { relations } from "drizzle-orm";
 import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { videoVisibility } from "./enums";
@@ -51,4 +52,5 @@ export const videoRelations = relations(videos, ({ one, many }) => ({
   views: many(videoViews),
   reactions: many(videoReactions),
   comments: many(comments),
+  playlistVideos: many(playlistVideos),
 }));
