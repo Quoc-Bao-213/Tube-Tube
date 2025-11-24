@@ -8,7 +8,7 @@ interface UseSubscriptionProps {
   fromVideoId?: string;
 }
 
-export const UseSubscription = ({
+export const useSubscription = ({
   userId,
   isSubscribed,
   fromVideoId,
@@ -20,7 +20,8 @@ export const UseSubscription = ({
     onSuccess: () => {
       toast.success("Subscribed");
 
-      utils.videos.getManySubscribed.invalidate();
+      utils.videos.getManySubscriptions.invalidate();
+      utils.users.getOne.invalidate({ id: userId });
 
       if (fromVideoId) {
         utils.videos.getOne.invalidate({ id: fromVideoId });
@@ -38,7 +39,8 @@ export const UseSubscription = ({
     onSuccess: () => {
       toast.success("Unsubscribed");
 
-      utils.videos.getManySubscribed.invalidate();
+      utils.videos.getManySubscriptions.invalidate();
+      utils.users.getOne.invalidate({ id: userId });
 
       if (fromVideoId) {
         utils.videos.getOne.invalidate({ id: fromVideoId });

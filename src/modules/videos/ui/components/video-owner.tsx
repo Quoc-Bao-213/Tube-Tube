@@ -5,7 +5,7 @@ import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { SubscriptionButton } from "@/modules/subscriptions/ui/components/subscription-button";
 import { UserInfo } from "@/modules/users/ui/components/user-info";
-import { UseSubscription } from "@/modules/subscriptions/hooks/use-subscription";
+import { useSubscription } from "@/modules/subscriptions/hooks/use-subscription";
 
 interface VideoOwnerProps {
   user: VideoGetOneOutput["user"];
@@ -14,7 +14,7 @@ interface VideoOwnerProps {
 
 export const VideoOwner = ({ user, videoId }: VideoOwnerProps) => {
   const { userId: clerkUserId, isLoaded } = useAuth();
-  const { isPending, onClick } = UseSubscription({
+  const { isPending, onClick } = useSubscription({
     userId: user.id,
     isSubscribed: user.viewerSubscribed,
     fromVideoId: videoId,
