@@ -58,10 +58,11 @@ export const SubscriptionsSection = () => {
                   <SidebarMenuButton
                     tooltip={subscription.user.name}
                     asChild
-                    isActive={pathName === `/user/${subscription.user.id}`}
+                    isActive={pathName === `/users/${subscription.user.id}`}
                   >
                     <Link
-                      href={`/user/${subscription.user.id}`}
+                      prefetch
+                      href={`/users/${subscription.user.id}`}
                       className="flex items-center gap-4"
                     >
                       <UserAvatar
@@ -80,7 +81,11 @@ export const SubscriptionsSection = () => {
                 asChild
                 isActive={pathName === "/subscriptions"}
               >
-                <Link href="/subscriptions" className="flex items-center gap-4">
+                <Link
+                  prefetch
+                  href="/subscriptions"
+                  className="flex items-center gap-4"
+                >
                   <ListIcon className="size-4" />
                   <span className="text-sm">All subscriptions</span>
                 </Link>

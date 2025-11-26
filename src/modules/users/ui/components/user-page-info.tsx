@@ -80,7 +80,9 @@ export const UserPageInfo = ({ user }: UserPageInfoProps) => {
               variant="secondary"
               className="w-full mt-3 rounded-full"
             >
-              <Link href="/studio">Go to studio</Link>
+              <Link prefetch href="/studio">
+                Go to studio
+              </Link>
             </Button>
           </div>
         ) : (
@@ -119,7 +121,9 @@ export const UserPageInfo = ({ user }: UserPageInfoProps) => {
           {userId === user.clerkId ? (
             <div className="flex items-center gap-2">
               <Button asChild variant="secondary" className="mt-3 rounded-full">
-                <Link href="/studio">Go to studio</Link>
+                <Link prefetch href="/studio">
+                  Go to studio
+                </Link>
               </Button>
             </div>
           ) : (
